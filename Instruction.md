@@ -247,3 +247,6 @@ The mobile application is available for users.
   - `GET /chapters/{chapterId}`: Fetch a single chapter by ID.
 
 **Note on Mobile API:** The `api_service.dart` file primarily implements methods for consuming these endpoints. The request/response bodies are inferred from the method signatures and common REST practices, cross-referenced with the web API where applicable.
+
+
+Live frontend link: https://english-bhashi-intenrship-task-osyr.vercel.app/login
