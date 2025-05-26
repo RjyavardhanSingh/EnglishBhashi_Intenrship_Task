@@ -1,0 +1,87 @@
+# General
+.DS_Store
+Thumbs.db
+*.log
+*.log.*
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+*.swp
+*.swo
+*~
+
+# Environment variables
+# Ignore all .env files, but not .env.example
+.env
+.env.*
+!.env.example
+
+# IDE and Editor specific
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# --- Backend (Node.js - typically in 'backend/' folder) ---
+backend/node_modules/
+backend/dist/
+backend/build/
+backend/coverage/
+backend/.env
+backend/.env.*
+!backend/.env.example
+backend/*.log
+backend/npm-debug.log*
+backend/yarn-debug.log*
+backend/yarn-error.log*
+backend/pnpm-debug.log*
+
+# --- Frontend (Svelte/TypeScript - typically in 'frontend/' folder) ---
+frontend/node_modules/
+frontend/build/
+frontend/dist/
+frontend/.svelte-kit/
+frontend/.env
+frontend/.env.*
+!frontend/.env.example
+frontend/.DS_Store
+frontend/*.log
+frontend/npm-debug.log*
+frontend/yarn-debug.log*
+frontend/yarn-error.log*
+frontend/pnpm-debug.log*
+
+# --- Flutter Application (typically in 'application/' folder) ---
+application/.dart_tool/
+application/.idea/
+application/.metadata
+application/.packages
+application/build/
+application/ios/Pods/
+application/ios/Flutter/App.framework
+application/ios/Flutter/engine.framework
+application/ios/.symlinks/
+application/ios/DerivedData/
+application/ios/eflutter_build_log.txt
+application/ios/Runner/GeneratedPluginRegistrant.h
+application/ios/Runner/GeneratedPluginRegistrant.m
+application/ios/Flutter/flutter_assets/
+application/android/.gradle/
+application/android/app/build/
+application/android/build/
+application/android/local.properties
+application/android/key.properties
+application/android/app/src/main/jniLibs/
+application/*.iml
+application/*.keystore
+application/*.jks
+application/flutter_build.log
+application/.flutter-plugins
+application/.flutter-plugins-dependencies
+# It's generally recommended to commit pubspec.lock for Flutter applications
+# to ensure consistent builds across environments.
+# application/pubspec.lock
+
+# If you have specific build outputs or sensitive files at the root level, add them here.
+# e.g., /my_root_build_output/
