@@ -23,7 +23,10 @@ This document provides instructions for setting up the web and mobile applicatio
 
 ## 2. Backend Setup
 
-The backend server is crucial for both the web and mobile applications.
+The backend server is crucial for both the web and mobile applications. It is deployed at:
+`https://englishbhashi-intenrship-task.onrender.com`
+
+If running locally:
 
 1.  Navigate to the `backend` directory:
     ```bash
@@ -34,7 +37,13 @@ The backend server is crucial for both the web and mobile applications.
     npm install
     # or yarn install
     ```
-3.  Start the server (assuming a start script like `npm start` or `node server.js`):
+3.  Create a `.env` file in the `backend` directory with your MongoDB URI and JWT Secret:
+    ```env
+    MONGODB_URI=your_mongodb_connection_string
+    JWT_SECRET=your_strong_jwt_secret_key
+    PORT=5000
+    ```
+4.  Start the server (assuming a start script like `npm start` or `node server.js`):
     ```bash
     npm start
     # or node server.js
@@ -54,7 +63,9 @@ The frontend is a Next.js application.
     npm install
     # or yarn install
     ```
-3.  Create a `.env.local` file in the `frontend` directory and set the API URL if it's different from the default:
+3.  The frontend is configured to connect to the deployed backend:
+    `https://englishbhashi-intenrship-task.onrender.com/api`.
+    If you need to connect to a local backend, create a `.env.local` file in the `frontend` directory and set the API URL:
     ```env
     NEXT_PUBLIC_API_URL=http://localhost:5000/api
     ```
@@ -69,22 +80,25 @@ The frontend is a Next.js application.
 
 The mobile application is built with Flutter.
 
-1.  Ensure you have the Flutter SDK installed and configured.
-2.  Navigate to the `application` directory:
+1.  Navigate to the `application` directory:
     ```bash
     cd application
     ```
-3.  Get Flutter dependencies:
+2.  Ensure you have the Flutter SDK installed and configured.
+3.  Install dependencies:
     ```bash
     flutter pub get
     ```
-4.  **Important:** Update the API base URL in `application/lib/services/api_service.dart` if your backend is not running on `http://192.168.0.12:5000`.
+4.  The application is configured to connect to the deployed backend:
+    `https://englishbhashi-intenrship-task.onrender.com/api`.
+    To change the backend URL (e.g., for local development), modify the `_baseUrl` constant in `lib/services/api_service.dart`:
     ```dart
-    // In application/lib/services/api_service.dart
-    // static const String _baseUrl = 'http://YOUR_BACKEND_IP:5000/api';
-    static const String _baseUrl = 'http://192.168.0.12:5000/api'; // Default
+    // lib/services/api_service.dart
+    // const String _baseUrl = 'http://10.0.2.2:5000/api'; // For Android Emulator
+    // const String _baseUrl = 'http://localhost:5000/api'; // For iOS Simulator / Localhost
+    const String _baseUrl = 'https://englishbhashi-intenrship-task.onrender.com/api'; // Deployed
     ```
-    Replace `192.168.0.12` with your computer's local network IP address if running the backend locally and testing on a physical device. If using an emulator, `10.0.2.2` (for Android Emulator) or `localhost` (for iOS Simulator if backend is on the same machine) might work for the IP, followed by the port `:5000`.
+    Replace `10.0.2.2` (Android Emulator) or `localhost` (iOS Simulator) with your computer's local network IP address if running the backend locally and testing on a physical device, followed by the port `:5000`.
 5.  Run the application on a connected device or emulator:
     ```bash
     flutter run
@@ -124,7 +138,7 @@ The mobile application is available for users.
 
 ### Web API (`api.ts`)
 
-- **Base URL:** `process.env.NEXT_PUBLIC_API_URL` (defaults to `http://localhost:5000/api`)
+- **Base URL:** `https://englishbhashi-intenrship-task.onrender.com/api`
 - **Authentication:** Uses Bearer token in the `Authorization` header. Token is stored in `localStorage`.
 
 #### Endpoints:
@@ -197,10 +211,10 @@ The mobile application is available for users.
 
 ### Mobile App API (`api_service.dart`)
 
-- **Base URL:** `http://192.168.0.12:5000/api` (Note: This IP might need to be changed based on your local network setup when testing with a physical device. For emulators, use `http://10.0.2.2:5000/api` for Android Emulator or `http://localhost:5000/api` for iOS Simulator if the backend is on the same machine.)
-- **Authentication:** Uses a token stored via `flutter_secure_storage`. The token is sent in headers for authenticated requests.
+- **Base URL:** `https://englishbhashi-intenrship-task.onrender.com/api`
+- **Authentication:** Uses Bearer token in the `Authorization` header. Token is stored using `flutter_secure_storage`.
 
-#### Endpoints (derived from `ApiService` methods):
+#### Methods (examples):
 
 - **Auth**
 
